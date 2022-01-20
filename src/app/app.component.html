@@ -6,20 +6,26 @@
     </ul>
     <div class="add-members-container">
       <input
-      type="text"
-      placeholder="Name"
-      aria-label="name"
-      #addMemberInput
-      (input)="onInput(addMemberInput.value)"
-      [value]="newMemberName"
+        type="text"
+        placeholder="Name"
+        aria-label="name"
+        #addMemberInput
+        (input)="onInput(addMemberInput.value)"
+        [value]="newMemberName"
       />
       <button (click)="addMember()">Add</button>
     </div>
     <div class="input-container">
-      <input type="text" placeholder="# of teams" aria-label="generate"/>
-      <button>Generate</button>
+      <input
+        type="text"
+        placeholder="# of teams"
+        aria-label="generate"
+        #teamSizeInput
+        (input)="onTeamSizeInput(teamSizeInput.value)"
+        [value]="numbersOfTeams"
+      />
+      <button (click)="generateTeams()">Generate</button>
     </div>
-    <p class="error-msg">{{errorMessage}}</p>
+    <p class="error-msg">{{ errorMessage }}</p>
   </div>
 </div>
-  

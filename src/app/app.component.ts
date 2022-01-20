@@ -35,18 +35,34 @@ export class AppComponent {
     const allMembers = [...this.members];
 
     if (!this.numbersOfTeams || this.numbersOfTeams <= 0) {
+      this.errorMessage = 'Invalid amount of teams';
       return
     }
-    for (let i = 0; i < this.numbersOfTeams; i++) {
-      const randomIndex = Math.floor(Math.random() * allMembers.length);
-      const member = allMembers.splice(randomIndex, 1)[0];
+    
+    this.errorMessage = '';
 
-      if (this.teams[i]) {
-        this.teams[i].push(member);
-      } else {
-        this.teams[i] = [member];
-      }
-      console.log(this.teams)
+    if (this.members.length < this.numbersOfTeams) {
+      this.errorMessage = 'Not enough members';
+      return;
     }
+
+    while (allMembers.length) {
+      for (let i = 0; i < this.numbersOfTeams; i++) {
+        const randomIndex = Math.floor(Math.random() * allMembers.length);
+        const member = allMembers.splice(randomIndex, 1)[0];
+        
+        if (!member){
+          break;
+        }
+        
+        if (this.teams[i]) {
+          this.teams[i].push(member);
+        } else {
+          this.teams[i] = [member];
+        }
+      }
+    }
+    this.members = [];
+    this.numbersOfTeams = '';
   }
 }
